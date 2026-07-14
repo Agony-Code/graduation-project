@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UK Train Rides Analysis | DEPI Graduation Project 2026</title>
+    <!-- Tailwind CSS for modern and responsive styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .gradient-text {
+            background: linear-gradient(135deg, #fef08a 0%, #ca8a04 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .glow-card:hover {
+            box-shadow: 0 10px 30px -10px rgba(234, 179, 8, 0.15);
+            border-color: rgba(234, 179, 8, 0.4);
+        }
+    </style>
+</head>
+<body class="bg-[#121212] text-zinc-100 font-sans antialiased selection:bg-yellow-500 selection:text-black">
+
+    <!-- Navigation Bar (Navbar) - Upgraded Modern Glassmorphic Sleek Design -->
+    <header class="sticky top-4 z-50 mx-auto max-w-6xl px-4 md:px-6">
+        <div class="backdrop-blur-xl bg-zinc-950/70 border border-zinc-800/80 rounded-2xl shadow-2xl shadow-black/40 px-6 py-3 flex flex-col md:flex-row justify-between items-center gap-4 transition-all duration-300 hover:border-zinc-700/50">
+            <div class="text-left flex items-center gap-3">
+                <!-- Decorative UK Train Indicator Light -->
+                <div class="relative flex h-3 w-3">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-3 w-3 bg-yellow-500"></span>
+                </div>
+                <div>
+                    <h1 class="text-base font-extrabold tracking-tight flex items-center gap-1.5">
+                        <span class="text-yellow-400 hover:text-yellow-300 transition-colors">UK Railway</span> 
+                        <span class="text-zinc-100">Analytics</span>
+                    </h1>
+                    <p class="text-[9px] text-zinc-500 font-bold tracking-widest uppercase">DEPI Project • 2026</p>
+                </div>
+            </div>
+            
+            <nav class="flex flex-wrap justify-center items-center gap-1 text-xs font-semibold text-zinc-400">
+                <a href="#about" class="px-3 py-1.5 rounded-lg hover:bg-zinc-900 hover:text-yellow-400 transition-all duration-250">About</a>
+                <a href="#objectives" class="px-3 py-1.5 rounded-lg hover:bg-zinc-900 hover:text-yellow-400 transition-all duration-250">Objectives</a>
+                <a href="#tech" class="px-3 py-1.5 rounded-lg hover:bg-zinc-900 hover:text-yellow-400 transition-all duration-250">Tech</a>
+                <a href="#preprocessing" class="px-3 py-1.5 rounded-lg hover:bg-zinc-900 hover:text-yellow-400 transition-all duration-250">Pipeline</a>
+                <a href="#passenger-trends" class="px-3 py-1.5 rounded-lg hover:bg-zinc-900 hover:text-yellow-400 transition-all duration-250">Trends</a>
+                <a href="#dashboard" class="px-3 py-1.5 bg-yellow-500/10 text-yellow-400 border border-yellow-500/20 rounded-lg hover:bg-yellow-500 hover:text-zinc-950 transition-all duration-250">Dashboard</a>
+                <a href="#recommendations" class="px-3 py-1.5 rounded-lg hover:bg-zinc-900 hover:text-yellow-400 transition-all duration-250">Strategy</a>
+                <a href="#team" class="px-3 py-1.5 rounded-lg hover:bg-zinc-900 hover:text-yellow-400 transition-all duration-250">Team</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section (About) -->
+    <section id="about" class="max-w-6xl mx-auto px-6 py-16 text-center">
+        <span class="px-3 py-1 text-[11px] font-bold uppercase tracking-widest text-yellow-500 bg-yellow-500/10 rounded-full border border-yellow-500/20">
+            Digital Egypt Pioneers Initiative (DEPI)
+        </span>
+        <h2 class="text-3xl md:text-5xl font-black mt-6 tracking-tight leading-tight">
+            A Comprehensive Data-Driven Exploration of <br><span class="gradient-text">UK National Railway Operations</span>
+        </h2>
+        <p class="mt-6 text-zinc-400 max-w-2xl mx-auto text-base leading-relaxed">
+            Examining passenger trends, revenue patterns, ticket class performance, and on-time reliability. Developed to equip aspiring data professionals with real-world analytical skills applied to a complex, high-impact transportation dataset.
+        </p>
+        <div class="mt-10 flex flex-wrap justify-center gap-4">
+            <a href="#dashboard" class="px-6 py-3 bg-yellow-500 text-zinc-950 font-bold rounded-lg hover:bg-yellow-400 transition shadow-lg shadow-yellow-500/20">
+                Explore Interactive Dashboard
+            </a>
+            <a href="#preprocessing" class="px-6 py-3 bg-zinc-900 border border-zinc-800 text-zinc-300 font-semibold rounded-lg hover:bg-zinc-800 transition">
+                Data Pre-Processing Steps
+            </a>
+        </div>
+
+        <!-- HERO IMAGE (UK Train rides analysis main slide) -->
+        <div class="mt-12 max-w-5xl mx-auto rounded-2xl overflow-hidden border border-zinc-800 shadow-2xl shadow-yellow-500/5">
+            <img src="train.jpg" alt="UK Train Rides Analysis Hero Slide" class="w-full h-auto object-cover opacity-95 hover:opacity-100 transition duration-300">
+        </div>
+    </section>
+
+    <!-- Project Objectives Section (NO IMAGE) -->
+    <section id="objectives" class="max-w-4xl mx-auto px-6 py-16 border-t border-zinc-900 text-center">
+        <span class="px-3 py-1 text-[11px] font-bold uppercase tracking-widest text-yellow-500 bg-yellow-500/10 rounded-full border border-yellow-500/20">Project Scope</span>
+        <h3 class="text-3xl font-black text-zinc-100 mt-6 mb-6">Project Objectives</h3>
+        <p class="text-zinc-400 text-base leading-relaxed max-w-3xl mx-auto mb-10">
+            This project addresses a critical gap in UK rail intelligence: the need to transform raw operational data into actionable insights. Leveraging a dataset covering <strong>19,871 distinct trips</strong> and <strong>31.7K ticket transactions across 65 unique routes</strong>.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
+            <div class="p-6 bg-zinc-900/40 rounded-2xl border border-zinc-800/80">
+                <span class="text-2xl">💡</span>
+                <h4 class="font-bold text-yellow-400 mt-2 mb-1">Optimize Rail Operations</h4>
+                <p class="text-xs text-zinc-400 leading-relaxed">Identify scheduling bottlenecks, capacity strain points, and operational inefficiencies across different operators.</p>
+            </div>
+            <div class="p-6 bg-zinc-900/40 rounded-2xl border border-zinc-800/80">
+                <span class="text-2xl">📊</span>
+                <h4 class="font-bold text-yellow-400 mt-2 mb-1">Understand Passenger Behavior</h4>
+                <p class="text-xs text-zinc-400 leading-relaxed">Map demand spikes to optimize capacity planning and provide seamless scheduling based on actual travel behavior.</p>
+            </div>
+            <div class="p-6 bg-zinc-900/40 rounded-2xl border border-zinc-800/80">
+                <span class="text-2xl">💵</span>
+                <h4 class="font-bold text-yellow-400 mt-2 mb-1">Evaluate Revenue Streams</h4>
+                <p class="text-xs text-zinc-400 leading-relaxed">Analyze ticket classes (Standard vs First Class) and purchase behavior to maximize yield management and dynamic pricing.</p>
+            </div>
+            <div class="p-6 bg-zinc-900/40 rounded-2xl border border-zinc-800/80">
+                <span class="text-2xl">⏱️</span>
+                <h4 class="font-bold text-yellow-400 mt-2 mb-1">Improve On-Time Performance</h4>
+                <p class="text-xs text-zinc-400 leading-relaxed">Diagnose primary delay reasons (Weather, Signals, Technical) to target preventive strategies and infrastructure upgrades.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack & Tools -->
+    <section id="tech" class="max-w-5xl mx-auto px-6 py-16 border-t border-zinc-900">
+        <div class="text-center mb-12">
+            <span class="px-3 py-1 text-[11px] font-bold uppercase tracking-widest text-yellow-500 bg-yellow-500/10 rounded-full border border-yellow-500/20">Technical Foundation</span>
+            <h3 class="text-3xl font-black text-zinc-100 mt-4">Robust Tech Stack</h3>
+            <p class="text-zinc-400 text-sm mt-2 max-w-2xl mx-auto">
+                To transform raw railway data into decision-ready strategic outputs, a robust end-to-end analytics pipeline was deployed.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- SQL Card -->
+            <div class="p-6 bg-zinc-900/40 border border-zinc-800 rounded-2xl text-center glow-card transition duration-300">
+                <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
+                    </svg>
+                </div>
+                <h4 class="font-bold text-sm text-zinc-100 mb-1">SQL</h4>
+                <p class="text-[11px] text-zinc-400 leading-relaxed">Structured Querying, Core Transformation, and Pipeline Backbone.</p>
+            </div>
+
+            <!-- Python Card -->
+            <div class="p-6 bg-zinc-900/40 border border-zinc-800 rounded-2xl text-center glow-card transition duration-300">
+                <div class="w-12 h-12 rounded-xl bg-yellow-500/10 border border-yellow-500/20 text-yellow-400 flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                    </svg>
+                </div>
+                <h4 class="font-bold text-sm text-zinc-100 mb-1">Python</h4>
+                <p class="text-[11px] text-zinc-400 leading-relaxed">Advanced Exploratory Data Analysis (EDA) and cleaning scripts.</p>
+            </div>
+
+            <!-- Excel Card -->
+            <div class="p-6 bg-zinc-900/40 border border-zinc-800 rounded-2xl text-center glow-card transition duration-300">
+                <div class="w-12 h-12 rounded-xl bg-green-500/10 border border-green-500/20 text-green-400 flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                </div>
+                <h4 class="font-bold text-sm text-zinc-100 mb-1">Power Query & Excel</h4>
+                <p class="text-[11px] text-zinc-400 leading-relaxed">Initial profiling, lightweight modeling, and validation checkups.</p>
+            </div>
+
+            <!-- Tableau Card -->
+            <div class="p-6 bg-zinc-900/40 border border-zinc-800 rounded-2xl text-center glow-card transition duration-300">
+                <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                </div>
+                <h4 class="font-bold text-sm text-zinc-100 mb-1">Tableau</h4>
+                <p class="text-[11px] text-zinc-400 leading-relaxed">Interactive high-fidelity business intelligence dashboards.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Data Pre-Processing & Challenges (CUSTOM FLOW & FULL DETAILED CHALLENGES) -->
+    <section id="preprocessing" class="max-w-5xl mx-auto px-6 py-16 bg-zinc-900/10 rounded-3xl border border-zinc-800/80 my-10">
+        <div class="text-center mb-12">
+            <span class="px-3 py-1 text-[11px] font-bold uppercase tracking-widest text-yellow-500 bg-yellow-500/10 rounded-full border border-yellow-500/20">Data Engineering Pipeline</span>
+            <h3 class="text-3xl font-black text-zinc-100 mt-4">Pre-Processing Pipeline</h3>
+            <p class="text-zinc-500 text-sm mt-2 max-w-xl mx-auto">Our custom-engineered ETL process designed to scrub, normalize, and shape raw train logistics logs.</p>
+        </div>
+
+        <!-- Custom HTML/CSS Flowchart drawing -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12 relative">
+            <div class="p-5 bg-zinc-900/60 rounded-2xl border border-zinc-800 text-center relative">
+                <div class="w-10 h-10 rounded-full bg-yellow-500/20 text-yellow-400 font-bold flex items-center justify-center mx-auto mb-3 text-sm">01</div>
+                <h4 class="font-bold text-xs text-zinc-200 mb-1">Ingestion & Schema Check</h4>
+                <p class="text-[10px] text-zinc-500">Mapping 31.7K dirty transactions to correct target datatypes.</p>
+            </div>
+            <div class="p-5 bg-zinc-900/60 rounded-2xl border border-zinc-800 text-center relative">
+                <div class="w-10 h-10 rounded-full bg-yellow-500/20 text-yellow-400 font-bold flex items-center justify-center mx-auto mb-3 text-sm">02</div>
+                <h4 class="font-bold text-xs text-zinc-200 mb-1">Text Standardization</h4>
+                <p class="text-[10px] text-zinc-500">Normalizing irregular inputs, status casing, and operator names.</p>
+            </div>
+            <div class="p-5 bg-zinc-900/60 rounded-2xl border border-zinc-800 text-center relative">
+                <div class="w-10 h-10 rounded-full bg-yellow-500/20 text-yellow-400 font-bold flex items-center justify-center mx-auto mb-3 text-sm">03</div>
+                <h4 class="font-bold text-xs text-zinc-200 mb-1">Feature Engineering</h4>
+                <p class="text-[10px] text-zinc-500">Generating Peak classifications, delays interval, and refund flags.</p>
+            </div>
+            <div class="p-5 bg-zinc-900/60 rounded-2xl border border-zinc-800 text-center relative">
+                <div class="w-10 h-10 rounded-full bg-yellow-500/20 text-yellow-400 font-bold flex items-center justify-center mx-auto mb-3 text-sm">04</div>
+                <h4 class="font-bold text-xs text-zinc-200 mb-1">System Multi-Validation</h4>
+                <p class="text-[10px] text-zinc-500">Auditing null patterns and outliers across Python & SQL layers.</p>
+            </div>
+        </div>
+
+        <!-- Preprocessing Challenges Block (EXACT TEXT FROM IMAGE) -->
+        <div class="bg-zinc-900/50 p-8 rounded-2xl border border-zinc-800">
+            <h4 class="text-lg font-bold text-yellow-400 mb-6 flex items-center gap-2">
+                ⚠️ Key Pre-Processing Challenges
+            </h4>
+            <div class="space-y-6 text-sm text-zinc-300">
+                <!-- Challenge 1 -->
+                <div class="border-b border-zinc-800/80 pb-4">
+                    <p class="font-bold text-zinc-100 flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-yellow-500"></span> 
+                        Fixing Delayed Status Errors:
+                    </p>
+                    <p class="text-zinc-400 pl-4 mt-1 leading-relaxed text-xs">
+                        We found 18 trips marked as 'Delayed' or 'Cancelled' even though their actual arrival time was exactly on time; we fixed these errors using a SQL query to set their status back to 'On Time' and clear the wrong delay reasons.
+                    </p>
+                </div>
+                <!-- Challenge 2 -->
+                <div class="border-b border-zinc-800/80 pb-4">
+                    <p class="font-bold text-zinc-100 flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-yellow-500"></span> 
+                        Standardizing Messy Text Fields:
+                    </p>
+                    <p class="text-zinc-400 pl-4 mt-1 leading-relaxed text-xs">
+                        The delay reasons columns were inconsistent, using different terms for the same thing like 'Signal failure' vs 'Signal Failure' or 'Staffing' vs 'Staff Shortage'; we unified all text categories so they group correctly in the dashboard charts.
+                    </p>
+                </div>
+                <!-- Challenge 3 -->
+                <div class="border-b border-zinc-800/80 pb-4">
+                    <p class="font-bold text-zinc-100 flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-yellow-500"></span> 
+                        Calculating Hidden Refunds & Profit:
+                    </p>
+                    <p class="text-zinc-400 pl-4 mt-1 leading-relaxed text-xs">
+                        The raw data only showed the ticket price without accounting for financial losses from train disruptions; we created a dynamic calculation rule based on UK rail logic to estimate refunds (from 5% to 100% back based on delay minutes) to find the true net profit.
+                    </p>
+                </div>
+                <!-- Challenge 4 -->
+                <div class="border-b border-zinc-800/80 pb-4">
+                    <p class="font-bold text-zinc-100 flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-yellow-500"></span> 
+                        Handling Midnight Trips (Overnight Durations):
+                    </p>
+                    <p class="text-zinc-400 pl-4 mt-1 leading-relaxed text-xs">
+                        For trains running around midnight, subtracting departure time from arrival time created broken negative numbers (like -1400 minutes); we solved this by adding a condition (+1440 minutes) to fix the journey duration for all overnight trips.
+                    </p>
+                </div>
+                <!-- Challenge 5 -->
+                <div>
+                    <p class="font-bold text-zinc-100 flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-yellow-500"></span> 
+                        Breaking Down Ticket Discounts:
+                    </p>
+                    <p class="text-zinc-400 pl-4 mt-1 leading-relaxed text-xs">
+                        Ticket prices didn't show a clear breakdown of how marketing discounts affected the revenue; we engineered custom columns to reverse-engineer the original prices and separate the exact discount amounts (30% for Railcards, 50% for Advance, and 25% for Off-Peak).
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Passenger Trends & Peak Hours Analysis -->
+    <section id="passenger-trends" class="max-w-6xl mx-auto px-6 py-16">
+        <div class="grid lg:grid-cols-12 gap-10 items-center">
+            
+            <!-- CUSTOM PEAK/OFF-PEAK CHART -->
+            <div class="lg:col-span-7 order-2 lg:order-1 flex flex-col items-center justify-center p-8 bg-zinc-900/30 border border-zinc-800/60 rounded-3xl">
+                <h4 class="text-sm font-bold mb-6 text-zinc-300">Journey Category & Traffic Distribution</h4>
+                
+                <div class="relative w-64 h-64 flex items-center justify-center">
+                    <svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="40" fill="transparent" stroke="#1c1917" stroke-width="20" />
+                        <circle cx="50" cy="50" r="40" fill="transparent" stroke="#eab308" stroke-width="20" 
+                                stroke-dasharray="194.5 251.3" stroke-linecap="round" />
+                        <circle cx="50" cy="50" r="40" fill="transparent" stroke="#fef08a" stroke-width="20" 
+                                stroke-dasharray="56.8 251.3" stroke-dashoffset="-194.5" stroke-linecap="round" />
+                    </svg>
+                    <div class="absolute text-center">
+                        <span class="text-3xl font-black text-yellow-400">19.9K</span>
+                        <span class="text-[10px] text-zinc-500 block uppercase font-bold tracking-wider mt-0.5">Total Trips</span>
+                    </div>
+                </div>
+
+                <div class="flex gap-8 text-xs font-semibold mt-8">
+                    <span class="flex items-center gap-2">
+                        <span class="w-3.5 h-3.5 rounded bg-yellow-500"></span> 
+                        Off-Peak <span class="text-yellow-400">(77.39%)</span>
+                    </span>
+                    <span class="flex items-center gap-2">
+                        <span class="w-3.5 h-3.5 rounded bg-yellow-200"></span> 
+                        Peak Hours <span class="text-yellow-200">(22.61%)</span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="lg:col-span-5 order-1 lg:order-2 space-y-6">
+                <span class="px-3 py-1 text-[11px] font-bold uppercase tracking-widest text-yellow-500 bg-yellow-500/10 rounded-full border border-yellow-500/20">Passenger Analytics</span>
+                <h3 class="text-2xl md:text-3xl font-black text-zinc-100">Passenger Trends & Peak Hours Analysis</h3>
+                <p class="text-zinc-400 text-sm leading-relaxed">
+                    Understanding when and how passengers travel is fundamental to efficient rail operations. This analysis examined journey volumes across days of the week, hours of the day, and seasonal periods to identify demand patterns that directly impact capacity planning and pricing.
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div class="p-4 bg-zinc-900/50 rounded-xl border border-zinc-800">
+                        <span class="text-xs text-zinc-500 block">Morning Peak</span>
+                        <strong class="text-base text-yellow-400 block mt-1">06:00 - 08:00</strong>
+                        <p class="text-[9px] text-zinc-400 mt-1">Surge accounts for ~31% of weekday journeys.</p>
+                    </div>
+                    <div class="p-4 bg-zinc-900/50 rounded-xl border border-zinc-800">
+                        <span class="text-xs text-zinc-500 block">Evening Peak</span>
+                        <strong class="text-base text-yellow-400 block mt-1">16:00 - 18:00</strong>
+                        <p class="text-[9px] text-zinc-400 mt-1">Creates a return commute spike of ~27% volume.</p>
+                    </div>
+                    <div class="p-4 bg-zinc-900/50 rounded-xl border border-zinc-800">
+                        <span class="text-xs text-zinc-500 block">Off-Peak</span>
+                        <strong class="text-base text-yellow-400 block mt-1">77.39%</strong>
+                        <p class="text-[9px] text-zinc-400 mt-1">Massive dominance representing core revenue opportunities.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Dashboard Section -->
+    <section id="dashboard" class="max-w-6xl mx-auto px-6 py-16 bg-zinc-900/10 rounded-3xl border border-zinc-800/80 my-10">
+        <div class="text-center mb-12">
+            <span class="px-3 py-1 text-[11px] font-bold uppercase tracking-widest text-yellow-500 bg-yellow-500/10 rounded-full border border-yellow-500/20">Deliverable Showcase</span>
+            <h3 class="text-3xl font-black mt-4">Interactive Dashboard Performance</h3>
+            <p class="text-zinc-500 text-sm mt-2">A complete 6-page production-grade dashboard designed to provide deep operational insights to rail executives.</p>
+        </div>
+
+        <!-- Tab Controls (6 Tabs in Exactly Correct Order) -->
+        <div class="flex flex-wrap justify-center gap-2 mb-8">
+            <button onclick="showTab('slide-1')" id="btn-slide-1" class="tab-btn px-4 py-2 text-xs font-semibold rounded-lg bg-yellow-500 text-zinc-950 transition">1. Operations Performance</button>
+            <button onclick="showTab('slide-2')" id="btn-slide-2" class="tab-btn px-4 py-2 text-xs font-semibold rounded-lg bg-zinc-900 text-zinc-400 hover:text-white transition">2. Tickets Analysis</button>
+            <button onclick="showTab('slide-3')" id="btn-slide-3" class="tab-btn px-4 py-2 text-xs font-semibold rounded-lg bg-zinc-900 text-zinc-400 hover:text-white transition">3. Routes Performance</button>
+            <button onclick="showTab('slide-4')" id="btn-slide-4" class="tab-btn px-4 py-2 text-xs font-semibold rounded-lg bg-zinc-900 text-zinc-400 hover:text-white transition">4. Revenue</button>
+            <button onclick="showTab('slide-5')" id="btn-slide-5" class="tab-btn px-4 py-2 text-xs font-semibold rounded-lg bg-zinc-900 text-zinc-400 hover:text-white transition">5. Refunds</button>
+            <button onclick="showTab('slide-6')" id="btn-slide-6" class="tab-btn px-4 py-2 text-xs font-semibold rounded-lg bg-zinc-900 text-zinc-400 hover:text-white transition">6. Delays</button>
+        </div>
+
+        <!-- Tab Contents (With Correct Texts matching the image completely) -->
+        <div class="p-6 bg-zinc-950/90 rounded-2xl border border-zinc-800 min-h-[450px] flex flex-col justify-center shadow-inner">
+            
+            <!-- Slide 1: Operations Performance Overview (REBUILT WITH DYNAMIC SIMULATION FROM 1.png) -->
+            <div id="slide-1" class="tab-content space-y-6">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 pb-4 border-b border-zinc-850">
+                    <div>
+                        <span class="text-xs font-bold text-yellow-500 uppercase tracking-widest">Page 1</span>
+                        <h4 class="text-xl font-bold">Operations Performance Overview</h4>
+                        <p class="text-zinc-400 text-xs">A comprehensive operational view tracing trip statuses, active locomotives, and temporal distribution.</p>
+                    </div>
+                </div>
+
+                <!-- Live Rebuilt KPI Cards from 1.png -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="p-4 bg-zinc-900/60 rounded-xl border border-zinc-800 text-center">
+                        <span class="text-[10px] text-zinc-400 block uppercase font-bold tracking-wider mb-1">Total Trips</span>
+                        <strong class="text-xl text-yellow-400 font-extrabold">19,871</strong>
+                    </div>
+                    <div class="p-4 bg-zinc-900/60 rounded-xl border border-zinc-800 text-center">
+                        <span class="text-[10px] text-zinc-400 block uppercase font-bold tracking-wider mb-1">On-Time Journeys</span>
+                        <strong class="text-xl text-emerald-400 font-extrabold">18,034</strong>
+                    </div>
+                    <div class="p-4 bg-zinc-900/60 rounded-xl border border-zinc-800 text-center">
+                        <span class="text-[10px] text-zinc-400 block uppercase font-bold tracking-wider mb-1">Delayed Journeys</span>
+                        <strong class="text-xl text-orange-400 font-extrabold">1,048</strong>
+                    </div>
+                    <div class="p-4 bg-zinc-900/60 rounded-xl border border-zinc-800 text-center">
+                        <span class="text-[10px] text-zinc-400 block uppercase font-bold tracking-wider mb-1">On-Time Rate</span>
+                        <strong class="text-xl text-yellow-400 font-extrabold">90.75%</strong>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="p-5 bg-zinc-900/40 rounded-xl border border-zinc-850 space-y-4">
+                        <h5 class="text-xs font-extrabold uppercase text-zinc-300 tracking-wider">⏱️ Trips Status Breakdown</h5>
+                        <div class="space-y-3 text-xs">
+                            <div class="flex justify-between">
+                                <span class="text-zinc-400">On Time</span>
+                                <span class="font-bold text-emerald-400">90.75% (18.0K)</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-zinc-400">Delayed</span>
+                                <span class="font-bold text-orange-400">5.27% (1.0K)</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-zinc-400">Cancelled</span>
+                                <span class="font-bold text-rose-400">3.98% (789)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-5 bg-zinc-900/40 rounded-xl border border-zinc-850 space-y-4">
+                        <h5 class="text-xs font-extrabold uppercase text-zinc-300 tracking-wider">📅 Peak vs Off-Peak Splits</h5>
+                        <div class="space-y-3 text-xs">
+                            <div class="flex justify-between">
+                                <span class="text-zinc-400">Off-Peak (Core Journeys)</span>
+                                <span class="font-bold text-yellow-400">77.39% (15.4K)</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-zinc-400">Peak (Commuter Rush)</span>
+                                <span class="font-bold text-yellow-200">22.61% (4.5K)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-5 bg-zinc-900/40 rounded-xl border border-zinc-850 space-y-4">
+                        <h5 class="text-xs font-extrabold uppercase text-zinc-300 tracking-wider">👥 Day Type Traffic</h5>
+                        <div class="space-y-3 text-xs">
+                            <div class="flex justify-between">
+                                <span class="text-zinc-400">Weekday Volume</span>
+                                <span class="font-bold text-yellow-400">71.4% (14.2K)</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-zinc-400">Weekend Volume</span>
+                                <span class="font-bold text-yellow-200">28.6% (5.7K)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2: Tickets Analysis (REBUILT WITH DYNAMIC SIMULATION FROM 2.png) -->
+            <div id="slide-2" class="tab-content hidden space-y-6">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 pb-4 border-b border-zinc-850">
+                    <div>
+                        <span class="text-xs font-bold text-yellow-500 uppercase tracking-widest">Page 2</span>
+                        <h4 class="text-xl font-bold">Tickets & Purchases Analysis</h4>
+                        <p class="text-zinc-400 text-xs">Deep dive into ticketing channels, purchasing modes, and Railcard discounts.</p>
+                    </div>
+                </div>
+
+                <!-- Live Rebuilt KPI Cards from 2.png -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="p-4 bg-zinc-900/60 rounded-xl border border-zinc-800 text-center">
+                        <span class="text-[10px] text-zinc-400 block uppercase font-bold tracking-wider mb-1">Tickets Sold</span>
+                        <strong class="text-xl text-yellow-400 font-extrabold">31.7K</strong>
+                    </div>
+                    <div class="p-4 bg-zinc-900/60 rounded-xl border border-zinc-800 text-center">
+                        <span class="text-[10px] text-zinc-400 block uppercase font-bold tracking-wider mb-1">Average Ticket Price</span>
+                        <strong class="text-xl text-emerald-400 font-extrabold">$23.4</strong>
+                    </div>
+                    <div class="p-4 bg-zinc-900/60 rounded-xl border border-zinc-800 text-center">
+                        <span class="text-[10px] text-zinc-400 block uppercase font-bold tracking-wider mb-1">Online Purchases</span>
+                        <strong class="text-xl text-yellow-400 font-extrabold">51.6%</strong>
+                    </div>
+                    <div class="p-4 bg-zinc-900/60 rounded-xl border border-zinc-800 text-center">
+                        <span class="text-[10px] text-zinc-400 block uppercase font-bold tracking-wider mb-1">Station Purchases</span>
+                        <strong class="text-xl text-orange-400 font-extrabold">48.4%</strong>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="p-5 bg-zinc-900/40 rounded-xl border border-zinc-850 space-y-4">
+                        <h5 class="text-xs font-extrabold uppercase text-zinc-300 tracking-wider">🛒 Top Ticket Types</h5>
+                        <div class="space-y-2 text-xs">
+                            <div class="flex justify-between border-b border-zinc-850/30 pb-1">
+                                <span class="text-zinc-400">Advance</span>
+                                <span class="font-bold text-yellow-400">14.1K Sold</span>
+                            </div>
+                            <div class="flex justify-between border-b border-zinc-850/30 pb-1">
+                                <span class="text-zinc-400">Anytime</span>
+                                <span class="font-bold text-yellow-400">8.9K Sold</span>
+                            </div>
+                            <div class="flex justify-between border-b border-zinc-850/30 pb-1">
+                                <span class="text-zinc-400">Off-Peak</span>
+                                <span class="font-bold text-yellow-400">8.7K Sold</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-5 bg-zinc-900/40 rounded-xl border border-zinc-850 space-y-4">
+                        <h5 class="text-xs font-extrabold uppercase text-zinc-300 tracking-wider">🎫 Ticket Class Breakdown</h5>
+                        <div class="space-y-3 text-xs">
+                            <div class="flex justify-between">
+                                <span class="text-zinc-400">Standard Class</span>
+                                <span class="font-bold text-yellow-400">28.5K (89.9%)</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-zinc-400">First Class</span>
+                                <span class="font-bold text-yellow-200">3.2K (10.1%)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-5 bg-zinc-900/40 rounded-xl border border-zinc-850 space-y-4">
+                        <h5 class="text-xs font-extrabold uppercase text-zinc-300 tracking-wider">🪪 Railcards Market Share</h5>
+                        <div class="space-y-2 text-xs">
+                            <div class="flex justify-between border-b border-zinc-850/30 pb-1">
+                                <span class="text-zinc-400">No Railcard</span>
+                                <span class="font-bold text-zinc-400">77.3%</span>
+                            </div>
+                            <div class="flex justify-between border-b border-zinc-850/30 pb-1">
+                                <span class="text-zinc-400">Adult (National)</span>
+                                <span class="font-bold text-yellow-400">11.6%</span>
+                            </div>
+                            <div class="flex justify-between border-b border-zinc-850/30 pb-1">
+                                <span class="text-zinc-400">Disabled</span>
+                                <span class="font-bold text-yellow-400">7.0%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3: Routes Performance (REBUILT WITH DYNAMIC SIMULATION FROM 3.png) -->
+            <div id="slide-3" class="tab-content hidden space-y-6">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 pb-4 border-b border-zinc-850">
+                    <div>
+                        <span class="text-xs font-bold text-yellow-500 uppercase tracking-widest">Page 3</span>
+                        <h4 class="text-xl font-bold">Routes Performance Insights</h4>
+                        <p class="text-zinc-400 text-xs">Deep network diagnostic showing departure stations, arrival stations, and top revenue tracks.</p>
+                    </div>
+                </div>
+
+                <!-- Live Rebuilt KPI Cards from 3.png -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="p-4 bg-zinc-900/60 rounded-xl border border-zinc-800 text-center">
+                        <span class="text-[10px] text-zinc-400 block uppercase font-bold tracking-wider mb-1">Unique Routes</span>
+                        <strong class="text-xl text-yellow-400 font-extrabold">65</strong>
+                    </div>
+                    <div class="p-4 bg-zinc-900/60 rounded-xl border border-zinc-800 text-center">
+                        <span class="text-[10px] text-zinc-400 block uppercase font-bold tracking-wider mb-1">Active Operators</span>
+                        <strong class="text-xl text-emerald-400 font-extrabold">12</strong>
+                    </div>
+                    <div class="p-4 bg-zinc-900/60 rounded-xl border border-zinc-800 text-center">
+                        <span class="text-[10px] text-zinc-400 block uppercase font-bold tracking-wider mb-1">Top Operator Volume</span>
+                        <strong class="text-xl text-yellow-400 font-extrabold">LNER</strong>
+                    </div>
+                    <div class="p-4 bg-zinc-900/60 rounded-xl border border-zinc-800 text-center">
+                        <span class="text-[10px] text-zinc-400 block uppercase font-bold tracking-wider mb-1">Top Departure Hub</span>
+                        <strong class="text-xl text-orange-400 font-extrabold">London Euston</strong>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="p-5 bg-zinc-900/40 rounded-xl border border-zinc-850 space-y-4">
+                        <h5 class="text-xs font-extrabold uppercase text-zinc-300 tracking-wider">🌟 Top 3 Routes by Journeys</h5>
+                        <div class="space-y-3 text-xs">
+                            <div class="border-b border-zinc-850 pb-1">
+                                <span class="text-zinc-200 block font-bold">Manchester Piccadilly - London Euston</span>
+                                <span class="text-zinc-500 text-[10px]">3,102 trips • 94% On-time</span>
+                            </div>
+                            <div class="border-b border-zinc-850 pb-1">
+                                <span class="text-zinc-200 block font-bold">London Kings Cross - York</span>
+                                <span class="text-zinc-500 text-[10px]">2,540 trips • 91% On-time</span>
+                            </div>
+                            <div class="border-b border-zinc-850 pb-1">
+                                <span class="text-zinc-200 block font-bold">London Paddington - Reading</span>
+                                <span class="text-zinc-500 text-[10px]">1,894 trips • 89% On-time</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-5 bg-zinc-900/40 rounded-xl border border-zinc-850 space-y-4">
+                        <h5 class="text-xs font-extrabold uppercase text-zinc-300 tracking-wider">🚄 Operator Performance</h5>
+                        <div class="space-y-2 text-xs">
+                            <div class="flex justify-between border-b border-zinc-850/30 pb-1">
+                                <span class="text-zinc-400">LNER</span>
+                                <span class="font-bold text-emerald-400">93.2% On-Time</span>
+                            </div>
+                            <div class="flex justify-between border-b border-zinc-850/30 pb-1">
+                                <span class="text-zinc-400">Avanti West Coast</span>
+                                <span class="font-bold text-yellow-400">89.4% On-Time</span>
+                            </div>
+                            <div class="flex justify-between border-b border-zinc-850/30 pb-1">
+                                <span class="text-zinc-400">GWR</span>
+                                <span class="font-bold text-rose-400">84.1% On-Time</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-5 bg-zinc-900/40 rounded-xl border border-zinc-850 space-y-4">
+                        <h5 class="text-xs font-extrabold uppercase text-zinc-300 tracking-wider">📍 Departure Station Ranking</h5>
+                        <div class="space-y-2 text-xs">
+                            <div class="flex justify-between border-b border-zinc-850/30 pb-1">
+                                <span class="text-zinc-400">London Euston</span>
+                                <span class="font-bold text-zinc-200">5.8K Journeys</span>
+                            </div>
+                            <div class="flex justify-between border-b border-zinc-850/30 pb-1">
+                                <span class="text-zinc-400">London Kings Cross</span>
+                                <span class="font-bold text-zinc-200">4.1K Journeys</span>
+                            </div>
+                            <div class="flex justify-between border-b border-zinc-850/30 pb-1">
+                                <span class="text-zinc-400">London Paddington</span>
+                                <span class="font-bold text-zinc-200">3.4K Journeys</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 4: Revenue (STUNNING REBUILT LIVE CODE OF IMAGE 4) -->
+            <div id="slide-4" class="tab-content hidden space-y-6">
+                <!-- Page Info -->
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 pb-4 border-b border-zinc-850">
+                    <div>
+                        <span class="text-xs font-bold text-yellow-500 uppercase tracking-widest">Page 4</span>
+                        <h4 class="text-xl font-bold">Revenue Dashboard & Analytical Breakdown</h4>
+                        <p class="text-zinc-400 text-xs">Dedicated financial tracking displaying gross ticket sales and how ticket structures drive overall profit.</p>
+                    </div>
+                </div>
+
+                <!-- Rebuilt KPI Cards directly from image 4 -->
+                <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+                    <div class="p-4 bg-zinc-900/60 rounded-xl border border-zinc-800 text-center">
+                        <span class="text-[10px] text-zinc-400 block uppercase font-bold tracking-wider mb-1">Revenue Before Discounts</span>
+                        <strong class="text-xl text-yellow-400 font-extrabold">$1.4M</strong>
+                    </div>
+                    <div class="p-4 bg-zinc-900/60 rounded-xl border border-zinc-800 text-center">
+                        <span class="text-[10px] text-zinc-400 block uppercase font-bold tracking-wider mb-1">Revenue</span>
+                        <strong class="text-xl text-emerald-400 font-extrabold">$742K</strong>
+                    </div>
+                    <div class="p-4 bg-zinc-900/60 rounded-xl border border-zinc-800 text-center">
+                        <span class="text-[10px] text-zinc-400 block uppercase font-bold tracking-wider mb-1">Net Profit</span>
+                        <strong class="text-xl text-yellow-400 font-extrabold">$724.4K</strong>
+                    </div>
+                    <div class="p-4 bg-zinc-900/60 rounded-xl border border-zinc-800 text-center">
+                        <span class="text-[10px] text-zinc-400 block uppercase font-bold tracking-wider mb-1">Revenue Lost from Discounts</span>
+                        <strong class="text-xl text-rose-400 font-extrabold">$656.6K</strong>
+                    </div>
+                    <div class="p-4 bg-zinc-900/60 rounded-xl border border-zinc-800 text-center col-span-2 md:col-span-1">
+                        <span class="text-[10px] text-zinc-400 block uppercase font-bold tracking-wider mb-1">Discount Impact on Revenue (%)</span>
+                        <strong class="text-xl text-orange-400 font-extrabold">47%</strong>
+                    </div>
+                </div>
+
+                <!-- Deep Metrics Breakdown in HTML -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Revenue by Ticket Type & Purchase Mode -->
+                    <div class="p-5 bg-zinc-900/40 rounded-xl border border-zinc-850 space-y-4">
+                        <h5 class="text-xs font-extrabold uppercase text-zinc-300 tracking-wider">🎫 Ticket & Purchase Class</h5>
+                        <div class="space-y-3">
+                            <div>
+                                <div class="flex justify-between text-xs mb-1">
+                                    <span class="text-zinc-400">Advance Tickets</span>
+                                    <span class="font-bold text-yellow-400">$309.3K</span>
+                                </div>
+                                <div class="w-full bg-zinc-800 h-1.5 rounded-full overflow-hidden">
+                                    <div class="bg-yellow-500 h-1.5" style="width: 42%;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-xs mb-1">
+                                    <span class="text-zinc-400">Off-Peak Tickets</span>
+                                    <span class="font-bold text-yellow-400">$223.3K</span>
+                                </div>
+                                <div class="w-full bg-zinc-800 h-1.5 rounded-full overflow-hidden">
+                                    <div class="bg-yellow-500/80 h-1.5" style="width: 30%;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-xs mb-1">
+                                    <span class="text-zinc-400">Anytime Tickets</span>
+                                    <span class="font-bold text-yellow-400">$209.3K</span>
+                                </div>
+                                <div class="w-full bg-zinc-800 h-1.5 rounded-full overflow-hidden">
+                                    <div class="bg-yellow-500/60 h-1.5" style="width: 28%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pt-2 border-t border-zinc-850 flex justify-between text-xs">
+                            <span class="text-zinc-400">Standard Class: <strong class="text-zinc-200">79.86%</strong></span>
+                            <span class="text-zinc-400">First Class: <strong class="text-zinc-200">20.14%</strong></span>
+                        </div>
+                    </div>
+
+                    <!-- Payment & Channel split -->
+                    <div class="p-5 bg-zinc-900/40 rounded-xl border border-zinc-850 space-y-4">
+                        <h5 class="text-xs font-extrabold uppercase text-zinc-300 tracking-wider">💳 Payment & Purchase Type</h5>
+                        <div class="space-y-3">
+                            <div>
+                                <div class="flex justify-between text-xs mb-1">
+                                    <span class="text-zinc-400">Credit Card</span>
+                                    <span class="font-bold text-yellow-400">$469.5K</span>
+                                </div>
+                                <div class="w-full bg-zinc-800 h-1.5 rounded-full overflow-hidden">
+                                    <div class="bg-yellow-500 h-1.5" style="width: 63%;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-xs mb-1">
+                                    <span class="text-zinc-400">Contactless</span>
+                                    <span class="font-bold text-yellow-400">$219.4K</span>
+                                </div>
+                                <div class="w-full bg-zinc-800 h-1.5 rounded-full overflow-hidden">
+                                    <div class="bg-yellow-500/80 h-1.5" style="width: 29%;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-xs mb-1">
+                                    <span class="text-zinc-400">Debit Card</span>
+                                    <span class="font-bold text-yellow-400">$53.0K</span>
+                                </div>
+                                <div class="w-full bg-zinc-800 h-1.5 rounded-full overflow-hidden">
+                                    <div class="bg-yellow-500/40 h-1.5" style="width: 8%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pt-2 border-t border-zinc-850 flex justify-between text-xs">
+                            <span class="text-zinc-400">Online purchases: <strong class="text-zinc-200">51.6%</strong></span>
+                            <span class="text-zinc-400">Station purchases: <strong class="text-zinc-200">48.4%</strong></span>
+                        </div>
+                    </div>
+
+                    <!-- Top routes from image -->
+                    <div class="p-5 bg-zinc-900/40 rounded-xl border border-zinc-850 space-y-4">
+                        <h5 class="text-xs font-extrabold uppercase text-zinc-300 tracking-wider">🛤️ Top Routes & Profit</h5>
+                        <div class="space-y-2 text-[11px]">
+                            <div class="flex justify-between border-b border-zinc-850/50 pb-1">
+                                <span class="text-zinc-400 truncate max-w-[150px]">London Kings Cross - York</span>
+                                <span class="text-zinc-300">Rev: <strong class="text-yellow-400">$183.2K</strong> | Profit: <strong class="text-emerald-400">$180.2K</strong></span>
+                            </div>
+                            <div class="flex justify-between border-b border-zinc-850/50 pb-1">
+                                <span class="text-zinc-400 truncate max-w-[150px]">Liverpool Lime St - London Euston</span>
+                                <span class="text-zinc-300">Rev: <strong class="text-yellow-400">$113.3K</strong> | Profit: <strong class="text-emerald-400">$109.7K</strong></span>
+                            </div>
+                            <div class="flex justify-between border-b border-zinc-850/50 pb-1">
+                                <span class="text-zinc-400 truncate max-w-[150px]">London Paddington - Reading</span>
+                                <span class="text-zinc-300">Rev: <strong class="text-yellow-400">$65.4K</strong> | Profit: <strong class="text-emerald-400">$63.8K</strong></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 5: Refunds (REBUILT WITH DYNAMIC SIMULATION FROM 5.png) -->
+            <div id="slide-5" class="tab-content hidden space-y-6">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 pb-4 border-b border-zinc-850">
+                    <div>
+                        <span class="text-xs font-bold text-yellow-500 uppercase tracking-widest">Page 5</span>
+                        <h4 class="text-xl font-bold">Refunds & Claims Analysis</h4>
+                        <p class="text-zinc-400 text-xs">Exposing the financial damage caused by delayed runs and cancellation refunds.</p>
+                    </div>
+                </div>
+
+                <!-- Live Rebuilt KPI Cards from 5.png -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="p-4 bg-zinc-900/60 rounded-xl border border-zinc-800 text-center">
+                        <span class="text-[10px] text-zinc-400 block uppercase font-bold tracking-wider mb-1">Total Refunds Claimed</span>
+                        <strong class="text-xl text-yellow-400 font-extrabold">$17,480</strong>
+                    </div>
+                    <div class="p-4 bg-zinc-900/60 rounded-xl border border-zinc-800 text-center">
+                        <span class="text-[10px] text-zinc-400 block uppercase font-bold tracking-wider mb-1">Claims count</span>
+                        <strong class="text-xl text-emerald-400 font-extrabold">1,123</strong>
+                    </div>
+                    <div class="p-4 bg-zinc-900/60 rounded-xl border border-zinc-800 text-center">
+                        <span class="text-[10px] text-zinc-400 block uppercase font-bold tracking-wider mb-1">Approved Claims Rate</span>
+                        <strong class="text-xl text-yellow-400 font-extrabold">92.4%</strong>
+                    </div>
+                    <div class="p-4 bg-zinc-900/60 rounded-xl border border-zinc-800 text-center">
+                        <span class="text-[10px] text-zinc-400 block uppercase font-bold tracking-wider mb-1">Refund Loss %</span>
+                        <strong class="text-xl text-rose-400 font-extrabold">2.36% of sales</strong>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="p-5 bg-zinc-900/40 rounded-xl border border-zinc-850 space-y-4">
+                        <h5 class="text-xs font-extrabold uppercase text-zinc-300 tracking-wider">🎫 Refunds by Ticket Class</h5>
+                        <div class="space-y-3 text-xs">
+                            <div class="flex justify-between">
+                                <span class="text-zinc-400">Standard Class</span>
+                                <span class="font-bold text-yellow-400">$13,540 (77.5%)</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-zinc-400">First Class</span>
+                                <span class="font-bold text-yellow-200">$3,940 (22.5%)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-5 bg-zinc-900/40 rounded-xl border border-zinc-850 space-y-4">
+                        <h5 class="text-xs font-extrabold uppercase text-zinc-300 tracking-wider">🛑 Principal Refund Causes</h5>
+                        <div class="space-y-2 text-xs">
+                            <div class="flex justify-between border-b border-zinc-850/30 pb-1">
+                                <span class="text-zinc-400">Weather disruptions</span>
+                                <span class="font-bold text-rose-400">$6,450 (36.9%)</span>
+                            </div>
+                            <div class="flex justify-between border-b border-zinc-850/30 pb-1">
+                                <span class="text-zinc-400">Signal Failure</span>
+                                <span class="font-bold text-orange-400">$4,820 (27.6%)</span>
+                            </div>
+                            <div class="flex justify-between border-b border-zinc-850/30 pb-1">
+                                <span class="text-zinc-400">Technical Issues</span>
+                                <span class="font-bold text-zinc-400">$3,120 (17.8%)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-5 bg-zinc-900/40 rounded-xl border border-zinc-850 space-y-4">
+                        <h5 class="text-xs font-extrabold uppercase text-zinc-300 tracking-wider">🏁 Heavy Payout Routes</h5>
+                        <div class="space-y-2 text-xs">
+                            <div class="flex justify-between border-b border-zinc-850/50 pb-1">
+                                <span class="text-zinc-400 truncate max-w-[150px]">London Euston - Manchester</span>
+                                <span class="font-bold text-rose-400">$4,250 Paid</span>
+                            </div>
+                            <div class="flex justify-between border-b border-zinc-850/50 pb-1">
+                                <span class="text-zinc-400 truncate max-w-[150px]">London Kings Cross - York</span>
+                                <span class="font-bold text-rose-400">$3,120 Paid</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 6: Delays (REBUILT WITH DYNAMIC SIMULATION FROM 6.png) -->
+            <div id="slide-6" class="tab-content hidden space-y-6">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 pb-4 border-b border-zinc-850">
+                    <div>
+                        <span class="text-xs font-bold text-yellow-500 uppercase tracking-widest">Page 6</span>
+                        <h4 class="text-xl font-bold">Delays & Punctuality Diagnostics</h4>
+                        <p class="text-zinc-400 text-xs">Root-cause investigation mapping 40K cumulative delay minutes to precise technical and environmental faults.</p>
+                    </div>
+                </div>
+
+                <!-- Live Rebuilt KPI Cards from 6.png -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="p-4 bg-zinc-900/60 rounded-xl border border-zinc-800 text-center">
+                        <span class="text-[10px] text-zinc-400 block uppercase font-bold tracking-wider mb-1">Delayed Runs</span>
+                        <strong class="text-xl text-yellow-400 font-extrabold">1,048</strong>
+                    </div>
+                    <div class="p-4 bg-zinc-900/60 rounded-xl border border-zinc-800 text-center">
+                        <span class="text-[10px] text-zinc-400 block uppercase font-bold tracking-wider mb-1">Cancelled Runs</span>
+                        <strong class="text-xl text-rose-400 font-extrabold">789</strong>
+                    </div>
+                    <div class="p-4 bg-zinc-900/60 rounded-xl border border-zinc-800 text-center">
+                        <span class="text-[10px] text-zinc-400 block uppercase font-bold tracking-wider mb-1">Total Delayed Minutes</span>
+                        <strong class="text-xl text-orange-400 font-extrabold">40,066 mins</strong>
+                    </div>
+                    <div class="p-4 bg-zinc-900/60 rounded-xl border border-zinc-800 text-center">
+                        <span class="text-[10px] text-zinc-400 block uppercase font-bold tracking-wider mb-1">Average Delay time</span>
+                        <strong class="text-xl text-yellow-400 font-extrabold">38.2 mins</strong>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="p-5 bg-zinc-900/40 rounded-xl border border-zinc-850 space-y-4">
+                        <h5 class="text-xs font-extrabold uppercase text-zinc-300 tracking-wider">🌧️ Root Cause Breakdown</h5>
+                        <div class="space-y-2 text-xs">
+                            <div class="flex justify-between border-b border-zinc-850/30 pb-1">
+                                <span class="text-zinc-400">Weather Issues</span>
+                                <span class="font-bold text-yellow-400">26.3% (10.5K mins)</span>
+                            </div>
+                            <div class="flex justify-between border-b border-zinc-850/30 pb-1">
+                                <span class="text-zinc-400">Signal Failure</span>
+                                <span class="font-bold text-orange-400">23.1% (9.2K mins)</span>
+                            </div>
+                            <div class="flex justify-between border-b border-zinc-850/30 pb-1">
+                                <span class="text-zinc-400">Technical Faults</span>
+                                <span class="font-bold text-zinc-400">19.5% (7.8K mins)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-5 bg-zinc-900/40 rounded-xl border border-zinc-850 space-y-4">
+                        <h5 class="text-xs font-extrabold uppercase text-zinc-300 tracking-wider">⚠️ Severity Distribution</h5>
+                        <div class="space-y-3 text-xs">
+                            <div class="flex justify-between">
+                                <span class="text-zinc-400">Minor Delay (< 15m)</span>
+                                <span class="font-bold text-emerald-400">42.4%</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-zinc-400">Medium Delay (15m - 60m)</span>
+                                <span class="font-bold text-orange-400">38.1%</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-zinc-400">Severe Delay (> 60m)</span>
+                                <span class="font-bold text-rose-400">19.5%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-5 bg-zinc-900/40 rounded-xl border border-zinc-850 space-y-4">
+                        <h5 class="text-xs font-extrabold uppercase text-zinc-300 tracking-wider">🛑 Top Delay-Prone Operators</h5>
+                        <div class="space-y-2 text-xs">
+                            <div class="flex justify-between border-b border-zinc-850/30 pb-1">
+                                <span class="text-zinc-400">CrossCountry</span>
+                                <span class="font-bold text-rose-400">15.4% Delay Rate</span>
+                            </div>
+                            <div class="flex justify-between border-b border-zinc-850/30 pb-1">
+                                <span class="text-zinc-400">GWR</span>
+                                <span class="font-bold text-orange-400">11.8% Delay Rate</span>
+                            </div>
+                            <div class="flex justify-between border-b border-zinc-850/30 pb-1">
+                                <span class="text-zinc-400">TransPennine Express</span>
+                                <span class="font-bold text-zinc-400">9.2% Delay Rate</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Business Recommendations (NO IMAGE) -->
+    <section id="recommendations" class="max-w-4xl mx-auto px-6 py-16 border-t border-zinc-900">
+        <div class="text-center mb-12">
+            <span class="px-3 py-1 text-[11px] font-bold uppercase tracking-widest text-yellow-500 bg-yellow-500/10 rounded-full border border-yellow-500/20">Strategic Output</span>
+            <h3 class="text-3xl font-black text-zinc-100 mt-4">Business Recommendations</h3>
+            <p class="text-zinc-400 text-sm mt-2 max-w-2xl mx-auto">Based on our exhaustive analysis, we outline four tactical interventions for UK Rail operators.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
+            <div class="p-6 bg-zinc-900/30 border border-zinc-800 rounded-2xl">
+                <span class="text-yellow-400 font-bold text-lg block mb-1">01. Dynamic Pricing Strategy</span>
+                <p class="text-xs text-zinc-400 leading-relaxed">Redistribute peak demand volumes using tactical off-peak discounts, optimizing passenger convenience while maximizing occupancy.</p>
+            </div>
+            <div class="p-6 bg-zinc-900/30 border border-zinc-800 rounded-2xl">
+                <span class="text-yellow-400 font-bold text-lg block mb-1">02. Infrastructure Reinforcement</span>
+                <p class="text-xs text-zinc-400 leading-relaxed">Target maintenance funds specifically to mitigate weather anomalies and signaling faults, which account for over 50% of delay instances.</p>
+            </div>
+            <div class="p-6 bg-zinc-900/30 border border-zinc-800 rounded-2xl">
+                <span class="text-yellow-400 font-bold text-lg block mb-1">03. Streamlined Delay Claims</span>
+                <p class="text-xs text-zinc-400 leading-relaxed">Integrate automatic claim systems into ticketing portals, significantly reducing user friction and restoring passenger satisfaction.</p>
+            </div>
+            <div class="p-6 bg-zinc-900/30 border border-zinc-800 rounded-2xl">
+                <span class="text-yellow-400 font-bold text-lg block mb-1">04. Centralized Data Infrastructure</span>
+                <p class="text-xs text-zinc-400 leading-relaxed">Deploy a continuous pipeline that streams and fuses operational timetables with accounting records for real-time analytics.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Conclusion (NO IMAGE - UPDATED WITH REAL PROJECT CONCLUSION) -->
+    <section id="conclusion" class="max-w-4xl mx-auto px-6 py-16 border-t border-zinc-900 text-center">
+        <span class="px-3 py-1 text-[11px] font-bold uppercase tracking-widest text-yellow-500 bg-yellow-500/10 rounded-full border border-yellow-500/20">Closing & Future Scope</span>
+        <h3 class="text-3xl font-black text-zinc-100 mt-6 mb-6">Conclusion</h3>
+        <p class="text-zinc-400 text-sm leading-relaxed max-w-3xl mx-auto mb-10">
+            This study successfully proves the immense power of applied business intelligence on complex transportation data. By deploying an airtight ETL pipeline in Python and SQL, and designing a robust, customer-centric dashboard in Tableau, we have delivered a blueprint for data-driven decisions that can reduce rail operational friction, optimize revenue yields, and elevate UK passenger experiences.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
+            <div class="p-5 bg-zinc-900/20 border border-zinc-850 rounded-xl">
+                <h4 class="font-bold text-xs text-yellow-400 mb-1">➔ Predictive ML Models</h4>
+                <p class="text-[10px] text-zinc-500">Train Random Forest algorithms to project delays based on ambient weather alerts.</p>
+            </div>
+            <div class="p-5 bg-zinc-900/20 border border-zinc-850 rounded-xl">
+                <h4 class="font-bold text-xs text-yellow-400 mb-1">➔ Sentiment Mining</h4>
+                <p class="text-[10px] text-zinc-500">Scrape passenger reviews to correlate delayed schedules with user dissatisfaction levels.</p>
+            </div>
+            <div class="p-5 bg-zinc-900/20 border border-zinc-850 rounded-xl">
+                <h4 class="font-bold text-xs text-yellow-400 mb-1">➔ Automated ETL Pipeline</h4>
+                <p class="text-[10px] text-zinc-500">Establish automated scheduled scripts to update active databases on a daily routine.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Team Members -->
+    <section id="team" class="max-w-6xl mx-auto px-6 py-16 border-t border-zinc-900">
+        <div class="text-center mb-10">
+            <span class="px-3 py-1 text-[11px] font-bold uppercase tracking-widest text-yellow-500 bg-yellow-500/10 rounded-full border border-yellow-500/20">DEPI Project Board</span>
+            <h3 class="text-2xl md:text-3xl font-black text-yellow-400 mt-4">Project Team Members</h3>
+        </div>
+
+        <!-- Team Profiles -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+            <div class="p-6 bg-zinc-900/40 border border-zinc-800 rounded-2xl text-center glow-card transition duration-300">
+                <div class="w-20 h-20 mx-auto rounded-full overflow-hidden border border-yellow-500/30 shadow-lg shadow-yellow-500/5 bg-zinc-800">
+                    <img src="fathy.jpeg" alt="Mohamed Fathy" class="w-full h-full object-cover">
+                </div>
+                <h4 class="font-bold mt-4 text-sm text-zinc-200">Mohamed Fathy</h4>
+            </div>
+            
+            <div class="p-6 bg-zinc-900/40 border border-zinc-800 rounded-2xl text-center glow-card transition duration-300">
+                <div class="w-20 h-20 mx-auto rounded-full overflow-hidden border border-yellow-500/30 shadow-lg shadow-yellow-500/5 bg-zinc-800">
+                    <img src="wameed.jpeg" alt="Wameed Alaa El-Dein" class="w-full h-full object-cover">
+                </div>
+                <h4 class="font-bold mt-4 text-sm text-zinc-200">Wameed Alaa El-Dein</h4>
+            </div>
+            
+            <div class="p-6 bg-zinc-900/40 border border-zinc-800 rounded-2xl text-center glow-card transition duration-300">
+                <div class="w-20 h-20 mx-auto rounded-full overflow-hidden border border-yellow-500/30 shadow-lg shadow-yellow-500/5 bg-zinc-800">
+                    <img src="mohiy.jpg" alt="Mohamed Mohiy" class="w-full h-full object-cover">
+                </div>
+                <h4 class="font-bold mt-4 text-sm text-zinc-200">Mohamed Mohiy</h4>
+            </div>
+            
+            <div class="p-6 bg-zinc-900/40 border border-zinc-800 rounded-2xl text-center glow-card transition duration-300">
+                <div class="w-20 h-20 mx-auto rounded-full overflow-hidden border border-yellow-500/30 shadow-lg shadow-yellow-500/5 bg-zinc-800">
+                    <img src="assem.png" alt="Assem Mohamed" class="w-full h-full object-cover">
+                </div>
+                <h4 class="font-bold mt-4 text-sm text-zinc-200">Assem Mohamed</h4>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-zinc-950 py-12 border-t border-zinc-900 text-center text-xs text-zinc-600">
+        <p class="mb-2">"Data is the new infrastructure. For UK rail to thrive in the 21st century, investment in analytics capability must match investment in tracks and trains."</p>
+        <p>© 2026 UK Rail Analytics.</p>
+    </footer>
+
+    <!-- Interactive Tab Script -->
+    <script>
+        function showTab(tabId) {
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.add('hidden'));
+
+            document.getElementById(tabId).classList.remove('hidden');
+
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-yellow-500', 'text-zinc-950');
+                btn.classList.add('bg-zinc-900', 'text-zinc-400');
+            });
+
+            const activeBtn = document.getElementById('btn-' + tabId);
+            activeBtn.classList.remove('bg-zinc-900', 'text-zinc-400');
+            activeBtn.classList.add('bg-yellow-500', 'text-zinc-950');
+        }
+    </script>
+</body>
+</html>
